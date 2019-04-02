@@ -1,5 +1,50 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import t from 'tcomb-form-native';
+
+const Form = t.form.Form;
+
+export const SearcheeStructure = t.struct({
+    full_name: t.String,
+    dob: t.Date,
+    sex: t.String,
+    height_cm: t.String,
+    weight_kg: t.String,
+    skin_tone: t.String,
+});
+
+export const SearcheeOptions = {
+    fields: {
+        full_name: {
+            editable: false,
+            label: 'Searchee Name'
+        },
+        dob: {
+            editable: false,
+            label: 'Date of Birth',
+            mode: 'date',
+            config: {
+                format: date => moment(date).format("DD MMM YYYY")
+            }
+        },
+        sex: {
+            editable: false,
+            label: 'Gender'
+        },
+        height_cm: {
+            editable: false,
+            label: 'Height'
+        },
+        weight_kg: {
+            editable: false,
+            label: 'Weight'
+        },
+        skin_tone: {
+            editable: false,
+            label: 'Skin Tone'
+        }
+    }
+};
 
 export default class SearcheeScreen extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -27,12 +72,12 @@ export default class SearcheeScreen extends Component {
         const searchee = this.props.navigation.getParam('searchee');
         return (
             <View style={styles.container} >
-                {this._renderInfo('Full Name', searchee.full_name)}
-                {this._renderInfo('Date of Birth', searchee.dob)}
-                {this._renderInfo('Gender', searchee.sex)}
-                {this._renderInfo('Height', searchee.height_cm)}
-                {this._renderInfo('Weight', searchee.weight_kg)}
-                {this._renderInfo('Skin Tone', searchee.skin_tone)}
+                 <Form
+                        value={{ ...searchee}}
+                        ref="form"
+                        type={SearcheeStructure}
+                        options={SearcheeOptions}
+                    />
             </View>
         );
     }
