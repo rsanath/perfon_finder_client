@@ -33,9 +33,18 @@ const allEditable = (options) => {
     return options;
 }
 
+const clone = (a) => {
+    const b = {};
+    Object.keys(a).forEach(key => {
+        b[key] = a[key];
+    })
+    return b;
+}
+
 const util = {
     storage,
-    allEditable
+    allEditable,
+    clone
 };
 
 export default util;

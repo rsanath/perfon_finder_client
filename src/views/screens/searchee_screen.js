@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import t from 'tcomb-form-native';
+import moment from 'moment';
 
 const Form = t.form.Form;
 
@@ -8,8 +9,8 @@ export const SearcheeStructure = t.struct({
     full_name: t.String,
     dob: t.Date,
     sex: t.String,
-    height_cm: t.String,
-    weight_kg: t.String,
+    height_cm: t.Number,
+    weight_kg: t.Number,
     skin_tone: t.String,
 });
 
@@ -73,7 +74,7 @@ export default class SearcheeScreen extends Component {
         return (
             <View style={styles.container} >
                  <Form
-                        value={{ ...searchee}}
+                        value={{ ...searchee, dob: new Date(searchee.dob)}}
                         ref="form"
                         type={SearcheeStructure}
                         options={SearcheeOptions}

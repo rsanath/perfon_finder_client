@@ -9,7 +9,7 @@ const AppNavigator = createStackNavigator({
     Dashboard: {
         screen: DashboardScreen,
         navigationOptions: {
-            title: 'Dashboard'  
+            title: 'Dashboard'
         }
     },
     Complaint: ComplaintScreen,

@@ -16,11 +16,14 @@ const request = (url, options) => {
             ...options
         }
     )
-    .then(r => {
-        if (!r.ok) throw new Error('The request was not successful');
-        return r;
+    .then(async res => {
+        const json = await res.json();
+        if (res.ok) {
+            return json;
+        } else {
+            throw new Error(json.message || JSON.stringify(json));
+        }
     })
-    .then(response => response.json())
 }
 
 const api = {
