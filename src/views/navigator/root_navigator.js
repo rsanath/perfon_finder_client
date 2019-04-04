@@ -1,12 +1,14 @@
-import {createStackNavigator, createAppContainer, createSwitchNavigator} from 'react-navigation';
+import { createStackNavigator, createAppContainer, createSwitchNavigator } from 'react-navigation';
 import AuthScreen from '../screens/auth_screen';
 import DashboardScreen from '../screens/dashboard_screen';
 import ComplaintScreen from '../screens/complaint_screen';
 import SearcheeScreen from '../screens/searchee_screen';
-import FlowScreen from '../screens/flow_screen';
 import NewSearcheeScreen from '../screens/new_searchees_screen';
-import NewSearcheeSamplesScreen from '../screens/new_searchee_sample_screen';
- 
+import NewComplaintScreen from '../screens/new_complaint_screen';
+import SearcheeSamplesScreen from '../screens/searchee_sample_screen';
+import NewSearchScreen from '../screens/new_search_screen';
+import SearchResultListScreen from '../screens/search_result_list_screen';
+
 
 const AppNavigator = createStackNavigator({
     Dashboard: {
@@ -16,10 +18,12 @@ const AppNavigator = createStackNavigator({
         }
     },
     Complaint: ComplaintScreen,
-    Flow: FlowScreen,
     Searchee: SearcheeScreen,
+    NewComplaint: NewComplaintScreen,
     NewSearchee: NewSearcheeScreen,
-    NewSearcheeSamples: NewSearcheeSamplesScreen
+    SearcheeSamples: SearcheeSamplesScreen,
+    NewSearch: NewSearchScreen,
+    SearchResultList: SearchResultListScreen
 
 });
 

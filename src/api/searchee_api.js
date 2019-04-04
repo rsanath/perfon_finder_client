@@ -12,11 +12,23 @@ const create = (searchee) => {
     })
 }
 
+const getSampleImages = async searchee_url => {
+    const url = searchee_url + 'samples/'
+    return fetch(url)
+        .then(r => r.json())
+}
+
+const getSearches = async searcheeUrl => {
+    const url = searcheeUrl + 'searches/'
+    return fetch(url)
+        .then(r => r.json())
+}
+
 const uploadSample = async (searcheeUrl, imagePath) => {
     var formData = new FormData();
 
     const name = uuidv1() + '.png'
-    formData.append('image', { uri: imagePath, name: name, type: 'image/png' });    
+    formData.append('image', { uri: imagePath, name: name, type: 'image/png' });
 
     let uploadUrl = searcheeUrl + 'upload_sample/'
 
@@ -31,12 +43,14 @@ const uploadSample = async (searcheeUrl, imagePath) => {
         },
         body: formData
     })
-    .then(res => res.json())
+        .then(res => res.json())
 }
 
 const SearcheeApi = {
     create,
-    uploadSample
+    uploadSample,
+    getSampleImages,
+    getSearches
 };
 
 export default SearcheeApi;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
 import t from 'tcomb-form-native';
 import moment from 'moment';
 import util from '../../util';
@@ -10,8 +10,7 @@ const Form = t.form.Form;
 export const ComplaintStructure = t.struct({
     name: t.String,
     doi: t.Date,
-    poi: t.String,
-    fir: t.String
+    poi: t.String
 });
 
 export const ComplaintOptions = {
@@ -32,9 +31,6 @@ export const ComplaintOptions = {
         poi: {
             label: 'Place of Incident',
             placeholder: 'Eg: Phoenix Mall, Chennai'
-        },
-        fir: {
-            label: 'FIR Document Link'
         }
     }
 };
@@ -52,7 +48,8 @@ export default class ComplaintScreen extends Component {
         const complaint = props.navigation.getParam('complaint', null);
         this.state = {
             searchees: [],
-            complaint
+            complaint,
+            fetchingSearchees: true
         };
     }
 
@@ -75,6 +72,7 @@ export default class ComplaintScreen extends Component {
     }
 
     async _fetchSearchees() {
+        this.setState({fetchingSearchees: true})
         let complaint = await fetch(this.state.complaint.url);
         complaint = await complaint.json();
 
@@ -84,7 +82,7 @@ export default class ComplaintScreen extends Component {
         })
         searchees = await Promise.all(searchees);
 
-        this.setState({ searchees })
+        this.setState({ searchees, fetchingSearchees: false })
     }
 
     _goToSearcheeScreen(searchee) {
@@ -124,16 +122,8 @@ export default class ComplaintScreen extends Component {
                         options={util.allEditable(ComplaintOptions, false)}
                     />
 
-                    <Text
-                        style={{
-                            fontSize: 20,
-                            color: 'black',
-                            textAlign: 'center',
-                            fontWeight: 'bold',
-                            marginVertical: 15
-                        }} >
-                        Missing Persons
-                </Text>
+                    <Text style={styles.subTitle} > Missing Persons </Text>
+                    <ActivityIndicator animating={this.state.fetchingSearchees} />
                     {this._renderSearchees()}
                     <TouchableOpacity
                         key={'add_new'}
@@ -187,5 +177,12 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: 'black',
         textAlign: 'center'
+    },
+    subTitle: {
+        fontSize: 20,
+        color: 'black',
+        textAlign: 'center',
+        fontWeight: 'bold',
+        marginVertical: 15
     }
 })

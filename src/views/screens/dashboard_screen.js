@@ -112,7 +112,8 @@ class DashboardScreen extends Component {
     }
 
     _renderComplaintHelperCard() {
-        if (this.state.user.complaints.length > 0) return null;
+        let {user} = this.state;
+        if (user.complaints.length > 0) return null;
         const bullet = {
             fontSize: 15,
             color: 'white',
@@ -147,7 +148,7 @@ class DashboardScreen extends Component {
                 <Text style={bullet}>We'll help you find the person</Text>
                 <Button
                     style={{ backgroundColor: '#fff', color: '#387be0', marginTop: 20 }}
-                    onPress={() => this.props.navigation.navigate('Flow')}
+                    onPress={() => this.props.navigation.navigate('NewComplaint', {user})}
                 >
                     Start Search
                 </Button>
