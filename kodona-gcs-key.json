@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "kodona",
+  "private_key_id": "9f493e4f1da43281601b8561e566f0b11144a3e9",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCYXbBdzj9ESWRn\n0H5WiHKIhyQTDD3Aji6ThB2fhglOHk4W2GT/Ww/T524crjcVvl4OOZ+cZ2Md3iDK\nVNqQ6rwExAGIu4wDEtFN9fPuQstBfIBYsm3LSa5jI4YnF6wJkV7/BICypH3NkLxl\nQWQIxTGZ8HDI5SRZpGptBvna/oIVX3X8jCBQx+31jWs2rcuBNzrgPpPBh9GCkVl3\nXmWxw+Id1tOIenYuaMt5o/STF5OPoel11Nl8g8xtmnNaGpErHJmlaH3EqiUmGu06\nDNqyVa64QSwxqGUEK3WLUB25eh1D07W3YhyLUX55xv3OplQPZ87nJp6s13ophlrt\nJuoMSkM1AgMBAAECggEAKBbSjkPzgoia+fOyIhuBoymHlNluMAlY+OhUkQIH1b2E\nh19FZ6iyh+tHHhW6maZ+gdiohdLwEc49q27bGTEh6lEWJD9QbgiX+J7DoUeCykaz\nUGMWH1xSHXSd2hBQ7C2LJKcvI5HDJgC0iSHE68fSrrHEQx+DSnDHrcsdl4DKgku1\nDR/iHheI8CK2P+hI2uai1FQ25QzEVnAbPuQM4XcnPdd/vOnfDS2hss8u5XUhBRGC\nVSbge+te/C1GbYXtb2Rtw4RxAQicQCcUZtEMTIxmVo5tYpHpuviqOQGHEcyDu+ZY\n57aTkoG6B/jI6qaGyeco9iua0eeVZjmQB/G9ZT+JGwKBgQDS2ZAq9m0ZlEazL9Ut\n8+Ob1S0B5dphLfBnvmVD3rS+eY7zncLOQVeJAfTqRyBgI0PwevkH6O5rLZhFFZHH\nFDiSU8ytJuCoe7ZGHM+mulmhrG0YNQ9jTxXQmmkIntrBlqPLiMaqpOaMFb9Bjp6s\nR8/6E9rdzTBxcQyrYOy/GSTKPwKBgQC4/iMRKuleBhTWYMLxjIhSXuWbXt7obPhG\nLNA/yKbGZJoZWcAU6TwA7CsommXIbnHzF00C5B5lijSxey9saakBW91DkhYpylRu\nuuBiDL52mmg6mgWnaD/uRWsQVWHk+40ua+36XWfItu8Zi2AFTd69GoyUUfRgzGJ2\nZ5zO4aTNiwKBgFwh/zIWvfOIbCBOTWun/5QPYXxL0NHX/g2HD77JaNc2TLW9AOuZ\nd8OBXGCmtcnsfvps8bZ4HP4uTTQayblg55thDLW4oEBe1nXqjv3+vb28l2sVfGTb\noN+nKTBAIbyns2jzmkPkjG0373uY81K6inFvDZsP1xQq3utgDfMu7HmHAoGAVtrr\nN/o/y2drjSOtI5/puVLY1tP6MIJJJxmPRQM+WlONjm13I9pF0+EOemfTdgF0+r9r\n5vmX0/DJwLKnl20cbojlH/6M7V4TulF/XEnDewgP+8Oo9+qYaZSqKecMqWf551vB\nRhVozvIk3Id1s8fV1k+KxXCdHn2XlSQcmX2T1PUCgYAw6dRv+S2nsHFVv2PF47Ub\nwM+zNyd+to0T488BIXFoThuBsCFF6s4jAhaENnoEKI2ahV/wW+Yjxul4q1JCNF/R\nC+5OfAog6Xlw+D3RwClrXgwjAoey0vnM72yTodJ4W+K82DtrmNNw1T09miUqZuu3\nENROHg6NqvhkrLeqDKzMUQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "kodona-mobile-client@kodona.iam.gserviceaccount.com",
+  "client_id": "112136525804821125359",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/kodona-mobile-client%40kodona.iam.gserviceaccount.com"
+}

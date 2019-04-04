@@ -1,4 +1,4 @@
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const storage = {
     set: async function (key, value) {
@@ -26,10 +26,25 @@ const storage = {
     }
 }
 
-const allEditable = (options) => {
+/*
+Helper for t-comb-form
+*/
+const allEditable = (options, flag = true) => {
     Object.keys(options.fields).forEach(field => {
-        options.fields[field].editable = true;
+        options.fields[field].editable = flag;
     })
+    return options;
+}
+
+/*
+Helper for t-comb-form
+*/
+const optionsForList = options => {
+    Object.keys(options.fields).forEach(k => {
+        let val = options.fields[k];
+        options.fields[k].item = val;
+    })
+    console.log(options);
     return options;
 }
 
@@ -41,10 +56,20 @@ const clone = (a) => {
     return b;
 }
 
+const baseUri = uri => {
+    const segments = uri.split('/');
+    return segments[segments.length - 1];
+}
+
+const normalize = (val, max, min) => (val - min) / (max - min);
+
 const util = {
     storage,
     allEditable,
-    clone
+    optionsForList,
+    clone,
+    normalize,
+    baseUri
 };
 
 export default util;

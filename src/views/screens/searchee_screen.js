@@ -3,22 +3,34 @@ import { View, Text, StyleSheet } from 'react-native';
 import t from 'tcomb-form-native';
 import moment from 'moment';
 
+import Button from '../components/solid_button';
+import util from '../../util';
+
+
 const Form = t.form.Form;
 
 export const SearcheeStructure = t.struct({
     full_name: t.String,
     dob: t.Date,
-    sex: t.String,
+    sex: t.enums({
+        'MALE': 'Male',
+        'FEMALE': 'Female',
+        'NON_BINARY': 'Non Binary'
+    }, 'Gender'),
     height_cm: t.Number,
     weight_kg: t.Number,
-    skin_tone: t.String,
+    skin_tone: t.enums({
+        'ST_LIGHT': 'Light',
+        'ST_MEDIUM': 'Medium',
+        'ST_DARK': 'Dark'
+    }, 'Skin Tone'),
 });
 
 export const SearcheeOptions = {
     fields: {
         full_name: {
             editable: false,
-            label: 'Searchee Name'
+            label: 'Missing Person Name'
         },
         dob: {
             editable: false,
@@ -34,11 +46,11 @@ export const SearcheeOptions = {
         },
         height_cm: {
             editable: false,
-            label: 'Height'
+            label: 'Height in cm'
         },
         weight_kg: {
             editable: false,
-            label: 'Weight'
+            label: 'Weight in kg'
         },
         skin_tone: {
             editable: false,
@@ -56,8 +68,31 @@ export default class SearcheeScreen extends Component {
 
     constructor(props) {
         super(props);
+        const searchee = props.navigation.getParam('searchee');
         this.state = {
+            searchee,
+            samples: []
         };
+    }
+
+    componentWillMount() {
+        this.didFocusSubscription = this.props.navigation.addListener(
+            'didFocus',
+            payload => {
+                this._fetchSamples();
+            }
+        );
+    }
+
+    async _fetchSamples() {
+        let searchee = this.state.searchee;
+        searchee = await fetch(searchee.url);
+        searchee = await searchee.json();
+
+        const { samples } = searchee;
+
+        console.log('fetched sample ', samples);
+        this.setState({ samples })
     }
 
     _renderInfo(label, value) {
@@ -70,15 +105,20 @@ export default class SearcheeScreen extends Component {
     }
 
     render() {
-        const searchee = this.props.navigation.getParam('searchee');
+        const { navigate } = this.props.navigation;
+        const { searchee } = this.state;
+
         return (
             <View style={styles.container} >
-                 <Form
-                        value={{ ...searchee, dob: new Date(searchee.dob)}}
-                        ref="form"
-                        type={SearcheeStructure}
-                        options={SearcheeOptions}
-                    />
+                <Form
+                    value={{ ...searchee, dob: new Date(searchee.dob) }}
+                    ref="form"
+                    type={SearcheeStructure}
+                    options={util.allEditable(SearcheeOptions, false)}
+                />
+                <Button onPress={() => navigate('NewSearcheeSamples', {searchee})}>
+                    Upload Images
+                </Button>
             </View>
         );
     }

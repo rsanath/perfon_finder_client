@@ -1,7 +1,8 @@
 const config = {
     // baseUrl: 'https://kodona.herokuapp.com'
     baseUrl: 'http://10.0.2.2:8000'
-    // baseUrl: 'http://192.168.43.138:8000'
+    // baseUrl: 'http://10.4.28.123:8000'
+    // baseUrl: 'http://localhost:8000'
 }
 
 const request = (url, options) => {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import t from 'tcomb-form-native';
 import moment from 'moment';
+import util from '../../util';
 
 
 const Form = t.form.Form;
@@ -17,17 +18,20 @@ export const ComplaintOptions = {
     fields: {
         name: {
             editable: false,
-            label: 'Complaint Name'
+            label: 'Complaint Name',
+            placeholder: 'Eg: Missing Children'
         },
         doi: {
             label: 'Date of Incident',
             mode: 'date',
             config: {
-                format: date => moment(date).format("Do MMM YYYY")
+                format: date => moment(date).format("DD MMM YYYY"),
+                placeholder: 'When the person(s) went missing'
             }
         },
         poi: {
-            label: 'Place of Incident'
+            label: 'Place of Incident',
+            placeholder: 'Eg: Phoenix Mall, Chennai'
         },
         fir: {
             label: 'FIR Document Link'
@@ -45,8 +49,10 @@ export default class ComplaintScreen extends Component {
 
     constructor(props) {
         super(props);
+        const complaint = props.navigation.getParam('complaint', null);
         this.state = {
-            searchees: []
+            searchees: [],
+            complaint
         };
     }
 
@@ -60,11 +66,18 @@ export default class ComplaintScreen extends Component {
     }
 
     componentWillMount() {
-        this._fetchSearchees()
+        this.didFocusSubscription = this.props.navigation.addListener(
+            'didFocus',
+            payload => {
+                this._fetchSearchees();
+            }
+        );
     }
 
     async _fetchSearchees() {
-        const complaint = this.props.navigation.getParam('complaint', null);
+        let complaint = await fetch(this.state.complaint.url);
+        complaint = await complaint.json();
+
         let searchees = complaint.searchees.map(async s => {
             const searchee = await fetch(s);
             return await searchee.json();
@@ -79,7 +92,8 @@ export default class ComplaintScreen extends Component {
     }
 
     onAddNewSearchee() {
-
+        let { complaint } = this.state;
+        this.props.navigation.navigate('NewSearchee', { complaint });
     }
 
     _renderSearchees() {
@@ -98,7 +112,7 @@ export default class ComplaintScreen extends Component {
     }
 
     render() {
-        const complaint = this.props.navigation.getParam('complaint', null);
+        const { complaint } = this.state;
 
         return (
             <ScrollView>
@@ -107,7 +121,7 @@ export default class ComplaintScreen extends Component {
                         value={{ ...complaint, doi: new Date(complaint.doi) }}
                         ref="form"
                         type={ComplaintStructure}
-                        options={ComplaintOptions}
+                        options={util.allEditable(ComplaintOptions, false)}
                     />
 
                     <Text

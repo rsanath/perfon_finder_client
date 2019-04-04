@@ -4,18 +4,21 @@ import { View, Text, TouchableOpacity } from 'react-native';
 export default class SolidButton extends Component {
     render() {
         return (
-            <TouchableOpacity {...this.props} >
+            <TouchableOpacity onPress={this.props.onPress} >
                 <Text
                     style={{
-                        flex: 1,
-                        backgroundColor: this.props.color || '#387be0',
+                        backgroundColor: '#387be0',
+                        color: '#ffffff',
                         padding: 7,
                         borderRadius: 5,
                         textAlign: 'center',
-                        color: 'white',
-                        fontSize: 20
-                    }}
-                >{this.props.children}</Text>
+                        fontSize: 20,
+                        fontWeight: 'bold',
+                        margin: 5,
+                        ...this.props.style,
+                    }}>
+                    {this.props.children}
+                </Text>
             </TouchableOpacity>
         );
     }
