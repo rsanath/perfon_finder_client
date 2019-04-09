@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, ScrollView } from 'react-native';
+import { View, Text, FlatList, ScrollView, TouchableOpacity } from 'react-native';
 
 import appStyles from '../styles/style';
 import SearcheeApi from '../../api/searchee_api';
@@ -50,13 +50,21 @@ export default class SearchResultListScreen extends Component {
     }
 
     renderSearchItem(item) {
+        const navigateToResultPage =() => {
+            this.props.navigation.navigate('SearchResult', {search: item})
+        }
+
         const backgroundColor = item.status == 'COMPLETED' ? '#247BA0' : '#4DA167'
         return (
-            <View style={{ ...styles.headerCard, backgroundColor }} key={item.url} >
+            <TouchableOpacity 
+            onPress={navigateToResultPage}
+            activeOpacity={0.7} >
+                <View style={{ ...styles.headerCard, backgroundColor }} key={item.url} >
                 <Text style={styles.heading}>{item.name}</Text>
                 <Text style={styles.subHead}>{`Status - ${item.status}`}</Text>
                 <Text style={styles.subHead}>{`Results Obtained - ${item.results.length}`}</Text>
             </View>
+            </TouchableOpacity>
         )
     }
 
@@ -69,7 +77,7 @@ export default class SearchResultListScreen extends Component {
                         (
                             <Text style={{ ...styles.subHead, color: '#000' }} >{`No ${title}`}</Text>
                         ) : (
-                            data.map(this.renderSearchItem)
+                            data.map(this.renderSearchItem.bind(this))
                         )
                 }
             </View>

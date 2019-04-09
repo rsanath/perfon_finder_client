@@ -7,8 +7,15 @@ const create = search => {
     })
 }
 
+const results = search => {
+    let url = search.url + 'results/';
+    console.log(url);
+    return fetch(url).then(r => r.json());
+}
+
 const SearchApi = {
-    create
+    create,
+    results
 }
 
 export default SearchApi;

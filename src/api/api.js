@@ -1,8 +1,9 @@
 const config = {
     // baseUrl: 'https://kodona.herokuapp.com'
-    baseUrl: 'http://10.0.2.2:8000'
+    // baseUrl: 'http://10.0.2.2:8000'
     // baseUrl: 'http://10.4.28.123:8000'
     // baseUrl: 'http://localhost:8000'
+    baseUrl: 'http://kodona.appspot.com'
 }
 
 const request = (url, options) => {

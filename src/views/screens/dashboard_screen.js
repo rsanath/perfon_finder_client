@@ -150,7 +150,7 @@ class DashboardScreen extends Component {
                     style={{ backgroundColor: '#fff', color: '#387be0', marginTop: 20 }}
                     onPress={() => this.props.navigation.navigate('NewComplaint', {user})}
                 >
-                    Start Search
+                    Submit Complaint
                 </Button>
             </View>
 
@@ -160,7 +160,7 @@ class DashboardScreen extends Component {
     render() {
         return (
             <View style={styles.container} >
-                <Text style={styles.heading} >{'Welcome ' + this.state.user.full_name}</Text>
+                <Text style={styles.heading} >Dashboard</Text>
                 {this._renderComplaintHelperCard()}
                 {this._renderComplaints()}
             </View>

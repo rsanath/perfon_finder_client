@@ -2,9 +2,9 @@ import uuidv1 from 'uuid/v1';
 import React, { Component } from 'react';
 import {
     View, Text,
-    StyleSheet, TouchableOpacity,
+    StyleSheet, 
+    TouchableOpacity,
     Modal, 
-    ToastAndorid,
     Image,
     ToastAndroid,
     ScrollView,
@@ -83,7 +83,7 @@ export default class NewSearchScreen extends Component {
 
         SearchApi.create(search)
             .then(res => {
-                ToastAndorid.show('Successfully Created', ToastAndroid.SHORT);
+                ToastAndroid.show('Successfully Created', ToastAndroid.SHORT);
                 this.props.navigation.pop();
             })
             .catch(e => {

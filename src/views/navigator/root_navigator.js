@@ -8,13 +8,14 @@ import NewComplaintScreen from '../screens/new_complaint_screen';
 import SearcheeSamplesScreen from '../screens/searchee_sample_screen';
 import NewSearchScreen from '../screens/new_search_screen';
 import SearchResultListScreen from '../screens/search_result_list_screen';
+import SearchResultScreen from '../screens/search_result_screen';
 
 
 const AppNavigator = createStackNavigator({
     Dashboard: {
         screen: DashboardScreen,
         navigationOptions: {
-            title: 'Dashboard'
+            title: 'Welcome'
         }
     },
     Complaint: ComplaintScreen,
@@ -23,8 +24,8 @@ const AppNavigator = createStackNavigator({
     NewSearchee: NewSearcheeScreen,
     SearcheeSamples: SearcheeSamplesScreen,
     NewSearch: NewSearchScreen,
-    SearchResultList: SearchResultListScreen
-
+    SearchResultList: SearchResultListScreen,
+    SearchResult: SearchResultScreen
 });
 
 const RootNavigator = createSwitchNavigator({
