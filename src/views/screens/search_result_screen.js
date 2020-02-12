@@ -52,8 +52,8 @@ export default class SearchResultScreen extends Component {
                     }}
                     source={{ uri: item.image_url }}
                 />
-                <Text>{`Timestamp - ${item.timestamp_sec}`}</Text>
-                <Text>{`Confidence - ${item.confidence}`}</Text>
+                <Text style={styles.resultItem} >{`Timestamp - ${item.timestamp_sec}`}</Text>
+                <Text style={styles.resultItem} >{`Confidence - ${item.confidence}`}</Text>
             </View>
         );
     }
@@ -81,5 +81,9 @@ const styles = {
     caption: {
         fontSize: 18,
         color: 'black'
+    },
+    resultItem: {
+        color: 'black',
+        fontSize: 16
     }
 }
