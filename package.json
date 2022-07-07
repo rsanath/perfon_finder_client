@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.2.2",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "react": "16.8.3",
     "react-art": "^16.3.2",
     "react-dom": "^16.3.2",
